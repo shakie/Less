@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if articles %}
+        {% for article in (articles_page.object_list if articles_page else articles) %}
+			<article class="post">
+			
+				<h1 class="title">
+					<a href="{{ SITEURL }}/{{ article.url }}" title="{{ article.title }}">{{ article.title }}</a>
+				</h1>
+				<div class="post-meta">
+					{#{% include 'includes/comment_count.html' %}#}
+				</div><!--/post-meta -->
+				
+				<div class="the-content">
+					{{ article.summary }}
+					<a class="btn btn-default btn-xs" href="{{ SITEURL }}/{{ article.url }}">more ...</a>
+				</div><!-- the-content -->
+				
+				<div class="meta clearfix">
+					{% include 'includes/categories_tags.html' %}
+				</div><!-- Meta -->
+				
+			</article>
+        {% endfor %}
+	    {% if articles_page and articles_paginator.num_pages > 1 %}
+			<!-- pagintation -->
+			<div id="pagination" class="clearfix">
+				<div class="past-page">
+		            {% if articles_page.has_previous() %}
+		                {% set num = articles_page.previous_page_number() %}
+		                <a href="{{ SITEURL }}/{{ page_name }}{{ num if num > 1 else '' }}.html">&laquo; Older</a>
+		            {% else %}
+		                <a href="#">&laquo;</a>
+		            {% endif %}
+				</div>
+				<div class="next-page">
+		            {% if articles_page.has_next() %}
+		                <a href="{{ SITEURL }}/{{ page_name }}{{ articles_page.next_page_number() }}.html">Newer &raquo;</a>
+		            {% else %}
+		                <a href="#">&raquo;</a>
+		            {% endif %}
+				</div>
+			</div><!-- pagination -->
+	    {% endif %}
+    {% else %}
+		<article class="post error">
+			<h1 class="404">Nothing posted yet</h1>
+		</article>
+    {% endif %}
+{% endblock content %}

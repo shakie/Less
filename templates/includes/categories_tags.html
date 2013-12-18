@@ -1,0 +1,22 @@
+<div class="category">
+    {% if DISPLAY_CATEGORIES %}
+    	<ul class="post-categories">
+        {% for cat, null in categories %}
+            <li{% if cat == category %} class="active"{% endif %}>
+                <a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+<div class="tags">
+    {% if DISPLAY_TAGS %}
+    	<ul class="post-tags">
+        {% for tag_name, null in tags %}
+            <li{% if tag_name == tag %} class="active"{% endif %}>
+                <a href="{{ SITEURL }}/{{ tag_name.url }}">{{ tag_name }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</div>
