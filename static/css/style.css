@@ -478,6 +478,20 @@ header .gravatar {
   margin: 0;
   float: right;
 }
+header .social {
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  margin: 18px 0 0 0;
+  float: right;
+  text-align: center;
+}
+header .social a {
+  color: #000000;
+}
+header .social a:hover {
+  color: #888888;
+}
 header #brand {
   float: left;
   width: 80%;
